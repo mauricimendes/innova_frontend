@@ -8,6 +8,10 @@ interface IDifficulty {
     difficulty: 'easy' | 'medium' | 'hard'
 }
 
+interface IAction {
+    difficulty: 'easy' | 'medium' | 'hard'
+}
+
 export const Container = styled.div<IDifficulty>`
     background-color: ${props => props.theme.colors.container};
     border-radius: 8px;
@@ -77,5 +81,39 @@ export const Icon = styled.button<ICheck>`
         height: 24px;
         width: 24px;
         color: ${props => props.theme.colors.primary};
+    }
+`
+
+export const Actions = styled.footer<IAction>`
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    strong {
+        color: ${props => 
+            props.difficulty === 'easy' ? props.theme.colors.green :
+            props.difficulty === 'medium' ? props.theme.colors.orange :
+            props.theme.colors.red
+        };
+        margin-right: 8px;
+    }
+    
+    button {
+        cursor: pointer;
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        border: 0;
+        background: ${props => props.theme.colors.red};
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        svg {
+            color: ${props => props.theme.colors.primary};
+        }
     }
 `

@@ -10,11 +10,11 @@ const Navbar: React.FC = () => {
 
     return (
         <NavbarContainer>
-            <span></span>
             <div>
                 <img src={logo} height='24' />
                 <strong>MyTasks</strong>
             </div>
+            <strong>Seja bem-vindo</strong>
             <button onClick={changeTheme}>
                 {actualTheme === 'light' ? <Moon /> : <Sun />}
             </button>

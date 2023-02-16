@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { addDays, format, isToday } from 'date-fns'
+import { Plus } from 'phosphor-react'
 
-import { Container, NotTasks, Wrapper } from "./styles"
+import { Container, NotTasks, Wrapper, Add } from "./styles"
 import Navbar from '../../components/navbar'
 import Sidebar from '../../components/sidebar'
 import Task from '../../components/task'
@@ -22,7 +23,7 @@ const Home: React.FC = () => {
     const [handleChecked, setHandleChecked] = useState(false)
 
     useEffect(() => {
-        api.get<ITasks[]>('/tasks/mauricimendes.11@gmail.com', {
+        api.get<ITasks[]>('/tasks', {
             params: {
                 difficulty: difficulty ? difficulty : null,
                 date
@@ -74,6 +75,7 @@ const Home: React.FC = () => {
                     {tasks.length != 0 ? tasks.map(task => (
                         <Task 
                             key={task.id} 
+                            id={task.id}
                             title={task.title}
                             description={task.description}
                             checked={task.checked} 
@@ -89,6 +91,9 @@ const Home: React.FC = () => {
                     }
                 </main>
             </Wrapper>
+            <Add>
+                <Plus size={24} />
+            </Add>
         </Container>
     )
 }

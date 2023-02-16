@@ -11,24 +11,6 @@ export const Container = styled.aside`
     background-color: ${props => props.theme.colors.container};
 
     padding: 16px;
-
-    section {
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
-        gap: 8px;
-
-        img {
-            height: 52px;
-            width: 52px;
-            border-radius: 8px;
-        }
-
-        strong {
-            color: ${props => props.theme.colors.primary};
-        }
-    }
 `
 
 export const StatusContainer = styled.div`
@@ -37,7 +19,6 @@ export const StatusContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: 24px;
 `
 
 export const StatusButton = styled.button<IStatusButton>`
@@ -47,7 +28,7 @@ export const StatusButton = styled.button<IStatusButton>`
         props.selected && props.difficulty === 'medium' ? props.theme.colors.orange : 
         props.selected && props.difficulty === 'hard' ? props.theme.colors.red : 
         props.theme.colors.background};
-    padding: 4px 16px;
+    padding: 8px 16px;
 
     strong {
         font-size: 0.875rem;
@@ -60,7 +41,7 @@ export const StatusButton = styled.button<IStatusButton>`
 `
 
 export const CalenderActions = styled.div`
-    margin: 24px 0;
+    margin: 0 0 24px 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

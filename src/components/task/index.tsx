@@ -1,9 +1,10 @@
-import React, { useState } from "react"
-import { Check } from 'phosphor-react'
+import React, { useCallback, useState } from "react"
+import { Check, Trash, WarningCircle } from 'phosphor-react'
 
-import { Container, Icon } from "./styles"
+import { Container, Icon, Actions } from "./styles"
 
 interface ITask {
+    id: string
     checked: boolean
     difficulty: 'easy' | 'medium' | 'hard'
     handleChecked(): void
@@ -11,7 +12,17 @@ interface ITask {
     description: string
 }
 
-const Task: React.FC<ITask> = ({ title, description, checked, difficulty, handleChecked }) => {
+const Task: React.FC<ITask> = ({ id, title, description, checked, difficulty, handleChecked }) => {
+    
+    const handleDeleteTask = useCallback((id: string) => {
+      
+            if (confirm('Tem certeza que deseja deletar essa task?')) {
+                console.log('deletou', id)
+            }
+            return
+      
+    }, [])
+
 
     return (
         <Container difficulty={difficulty}>
@@ -27,13 +38,20 @@ const Task: React.FC<ITask> = ({ title, description, checked, difficulty, handle
                         {description}
                     </p>
                 </div>
-                <strong>
-                    {   
-                        difficulty === 'easy' ? 'Fácil' : 
-                        difficulty === 'medium' ? 'Médio' : 
-                        'Difícil'
-                    }
-                </strong>
+                <Actions difficulty={difficulty} >
+                    <strong>
+                        {   
+                            difficulty === 'easy' ? 'Fácil' : 
+                            difficulty === 'medium' ? 'Médio' : 
+                            'Difícil'
+                        }
+                    </strong>
+                    <button onClick={() => {
+                        handleDeleteTask(id)
+                    }}>
+                        <Trash/>
+                    </button>
+                </Actions>
             </main>
         </Container>
     )

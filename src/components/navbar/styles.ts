@@ -25,6 +25,10 @@ export const NavbarContainer = styled.nav`
         }
     }
 
+    strong {
+        color: ${props => props.theme.colors.primary};
+    }
+
     button {
         margin-left: 16px;
         height: 52px;

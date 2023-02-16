@@ -19,11 +19,6 @@ const Sidebar: React.FC<ISidebar> = ({ handleSelectedDifficulty, handleChangeDat
 
     return (
         <Container>
-            <section>
-                <img src="https://github.com/mauricimendes.png" />
-                <strong>Seja bem-vindo</strong>
-            </section>
-
             <CalenderActions>
                 <button onClick={() => handleChangeDate('previous')}>
                     <CaretLeft />
