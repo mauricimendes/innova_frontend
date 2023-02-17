@@ -34,12 +34,13 @@ export const NotTasks = styled.div`
     align-items: center;
 
     strong {
-        color: ${props => props.theme.colors.primary};
+        font-weight: 500;
+        color: ${props => props.theme.colors.secondary};
     }
 `
 
 export const Add = styled.button`
-    position: absolute;
+    position: fixed;
     bottom: 2rem;
     right: 2rem;
 

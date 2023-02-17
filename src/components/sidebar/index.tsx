@@ -1,12 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import { CaretLeft, CaretRight } from "phosphor-react"
-import { Container, StatusContainer, StatusButton, CalenderActions } from "./styles"
-
-const status = [
-    { id: 1, title: 'Fácil', difficulty: 'easy'},
-    { id: 2, title: 'Médio', difficulty: 'medium'},
-    { id: 3, title: 'Difícil', difficulty: 'hard'},
-]
+import { Container, CalenderActions } from "./styles"
+import Difficulty from "../difficulty"
 
 interface ISidebar {
     handleSelectedDifficulty(difficulty: string): void
@@ -15,8 +10,6 @@ interface ISidebar {
 }
 
 const Sidebar: React.FC<ISidebar> = ({ handleSelectedDifficulty, handleChangeDate, day }) => {
-    const [selected, setSelected] = useState('')
-
     return (
         <Container>
             <CalenderActions>
@@ -28,22 +21,9 @@ const Sidebar: React.FC<ISidebar> = ({ handleSelectedDifficulty, handleChangeDat
                     <CaretRight />
                 </button>
             </CalenderActions>
-
-            <StatusContainer>
-                {status.map(s => (
-                    <StatusButton 
-                        key={s.id} 
-                        selected={selected === s.difficulty ? true : false} 
-                        difficulty={s.difficulty} 
-                        onClick={() => {
-                            setSelected(state => state === s.difficulty ? '' : s.difficulty)
-                            handleSelectedDifficulty(selected === s.difficulty ? '' : s.difficulty)
-                        }}
-                    >
-                        <strong>{s.title}</strong>
-                    </StatusButton>
-                ))}
-            </StatusContainer>
+            <Difficulty 
+                handleSelectedDifficulty={(difficulty) => handleSelectedDifficulty(difficulty)}
+            />
         </Container>
     )
 }

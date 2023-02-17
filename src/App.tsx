@@ -1,5 +1,6 @@
 import { ThemeProvider  } from './hooks/theme'
-import Home from './pages/home'
+import Routes from './routes'
+
 import GlobalStyles from './styles/global'
 
 function App() {
@@ -7,7 +8,7 @@ function App() {
   return (
     <ThemeProvider>
       <GlobalStyles />
-      <Home />
+      <Routes />
     </ThemeProvider>
   )
 }

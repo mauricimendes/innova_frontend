@@ -106,14 +106,14 @@ export const Actions = styled.footer<IAction>`
         width: 24px;
         border-radius: 4px;
         border: 0;
-        background: ${props => props.theme.colors.red};
+        background: ${props => props.theme.colors.background};
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
 
         svg {
-            color: ${props => props.theme.colors.primary};
+            color: ${props => props.theme.colors.red};
         }
     }
 `

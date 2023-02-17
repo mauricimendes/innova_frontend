@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
 import { addDays, format, isToday } from 'date-fns'
 import { Plus } from 'phosphor-react'
+import { Link } from "react-router-dom"
 
 import { Container, NotTasks, Wrapper, Add } from "./styles"
 import Navbar from '../../components/navbar'
@@ -39,7 +40,6 @@ const Home: React.FC = () => {
 
 
     const handleChangeDate = useCallback((nextOrPrevious: string) => {
-        console.log('tes')
         const newDate = addDays(date, nextOrPrevious === 'next' ? 1 : -1)
         setDate(new Date(newDate))
     }, [date])
@@ -74,6 +74,9 @@ const Home: React.FC = () => {
                 <main>
                     {tasks.length != 0 ? tasks.map(task => (
                         <Task 
+                            handleDelete={(id) => {
+                                setTasks(state => state.filter(task => task.id !== id))
+                            }}
                             key={task.id} 
                             id={task.id}
                             title={task.title}
@@ -84,16 +87,18 @@ const Home: React.FC = () => {
                         />
                     )) : 
                         <NotTasks>
-                           <strong>
-                            Não há tasks cadastradas para hoje com essa dificuldade.
+                            <strong>
+                                Não há tarefas cadastradas para hoje com essa dificuldade.
                             </strong> 
                         </NotTasks>
                     }
                 </main>
             </Wrapper>
-            <Add>
-                <Plus size={24} />
-            </Add>
+            <Link to='/form'>
+                <Add>
+                    <Plus size={24} />
+                </Add>
+            </Link>
         </Container>
     )
 }

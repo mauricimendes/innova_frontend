@@ -1,7 +1,8 @@
-import React, { useCallback, useState } from "react"
-import { Check, Trash, WarningCircle } from 'phosphor-react'
+import React, { useCallback } from "react"
+import { Check, Trash } from 'phosphor-react'
 
 import { Container, Icon, Actions } from "./styles"
+import api from "../../services/api"
 
 interface ITask {
     id: string
@@ -10,17 +11,21 @@ interface ITask {
     handleChecked(): void
     title: string
     description: string
+    handleDelete(id: string): void
 }
 
-const Task: React.FC<ITask> = ({ id, title, description, checked, difficulty, handleChecked }) => {
+const Task: React.FC<ITask> = ({ id, title, description, checked, difficulty, handleChecked, handleDelete }) => {
     
-    const handleDeleteTask = useCallback((id: string) => {
-      
-            if (confirm('Tem certeza que deseja deletar essa task?')) {
-                console.log('deletou', id)
-            }
-            return
-      
+    const handleDeleteTask = useCallback((id: string) => {      
+        if (confirm('Tem certeza que deseja deletar essa task?')) {
+            api.delete(`/tasks/${id}`)
+                .then(_ => {
+                    alert('Tarefa deletada com sucesso.')
+                    handleDelete(id)
+                })
+                .catch( err => alert(err))
+        }
+        return
     }, [])
 
 
